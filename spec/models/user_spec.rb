@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'validations' do
-    it "should validate address (validates_associated)" do
+    it " address (validates_associated)" do
       a = User.new(first_name:"ruby", last_name:"rails", email_address: "test@chimera.com")
       a.build_address(street:"abc")
       a.save.should eq(false)
@@ -20,7 +20,7 @@ RSpec.describe User, type: :model do
     context 'email_address validations' do
       let(:user) { User.new(first_name:"ruby", last_name:"rails") }
 
-      it 'should be invalid' do
+      it 'invalid' do
         addresses = %w[user@foo,com user_at_foo.org example.user@foo. foo@bar_baz.com foo@bar+baz.com]
         addresses.each do |invalid_address|
           user.email_address = invalid_address
@@ -28,7 +28,7 @@ RSpec.describe User, type: :model do
         end
       end
 
-      it 'should be valid' do
+      it 'valid' do
         addresses = %w[user@foo.com user_at_foo@www.org example.user@foo.com foo+2@barbaz.com]
         addresses.each do |valid_address|
           user.email_address = valid_address
@@ -40,7 +40,7 @@ RSpec.describe User, type: :model do
     context 'date_of_birth' do
       let(:user) { User.new(first_name:"ruby", last_name:"rails", email_address:"test@chimera.com") }
 
-      it 'should be valid' do
+      it 'valid' do
         birth = %w[20.12.2009 2017.12.01]
         birth.each do |invalid_address|
           user.date_of_birth = invalid_address
@@ -48,7 +48,7 @@ RSpec.describe User, type: :model do
         end
       end
 
-      it 'should be invalid' do
+      it 'invalid' do
         birth = %W[20.12.2020 2020.12.01 2012.15.01 qdwqw moja_daatat fwe.qd12.10 #{Date.today}]
         birth.each do |invalid_address|
           user.date_of_birth = invalid_address
@@ -64,7 +64,7 @@ RSpec.describe User, type: :model do
       let(:user) { User.new(first_name:"ruby", last_name:"rails", email_address:"test@chimera.com") }
       before(:each) { user.save; user.create_address!(street: "qwerty", city: "qazwsx", zip_code: "87-100", country: "poland" ) }
 
-      context 'should be valid' do
+      context 'valid' do
           it 'when phone_number is nil' do
             user.phone_number = nil
             expect(user).to be_valid
@@ -90,7 +90,7 @@ RSpec.describe User, type: :model do
             expect(user).to be_valid
           end
 
-        context 'should be invalid' do
+        context 'invalid' do
           it 'when phone number doesnt match to country' do
             user.phone_number = "1231231233"
             expect(user).not_to be_valid
