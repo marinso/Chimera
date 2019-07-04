@@ -1,0 +1,95 @@
+<div>
+  <%= form_for(@user) do |f| %>
+
+    <p>user information: </p>
+    <div>
+      <%= render 'shared/error_messages' %>
+    </div>
+
+    <div>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </div>
+
+    <div>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div>
+
+    <div>
+      <%= f.label :email_address %>
+      <%= f.email_field :email_address %>
+    </div>
+
+    <div>
+      <%= f.label :date_of_birth  %>
+      <%= f.text_field :date_of_birth %>
+    </div>
+
+    <div>
+      <%= f.label :phone_number %>
+      <%= f.text_field :phone_number %>
+    </div>
+
+   <p>user address: </p>
+
+    <%= f.fields_for :address do |address| %>
+      <div>
+        <%= address.label :street %>
+        <%= address.text_field :street %>
+      </div>
+
+      <div>
+        <%= address.label :city %>
+        <%= address.text_field :city %>
+      </div>
+
+      <div>
+        <%= address.label :zip_code %>
+        <%= address.text_field :zip_code %>
+      </div>
+
+      <div>
+        <%= address.label :country %>
+        <%= address.text_field :country %>
+      </div>
+    <% end %>
+
+    <p>company: </p>
+    <%= f.fields_for :company do |c| %>
+      <div>
+        <%= c.label :name %>
+        <%= c.text_field :name %>
+      </div>
+
+      <p>company address:</p>
+
+      <%= c.fields_for :address do |a| %>
+        <div>
+          <%= a.label :street %>
+          <%= a.text_field :street %>
+        </div>
+
+        <div>
+          <%= a.label :city %>
+          <%= a.text_field :city %>
+        </div>
+
+        <div>
+          <%= a.label :zip_code %>
+          <%= a.text_field :zip_code %>
+        </div>
+
+        <div>
+          <%= a.label :country %>
+          <%= a.text_field :country %>
+        </div>
+
+      <% end %>
+
+      <div>
+        <%= f.submit "Create my account" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
